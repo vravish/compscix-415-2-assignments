@@ -1,0 +1,46 @@
+---
+title: "homework_1_ravishankar_venudhar"
+author: "Venudhar Ravishankar"
+date: "1/30/2018"
+output: html_document
+---
+
+```{r load_packages, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(mdsr)
+library(tidyverse)
+
+data("WorldCities")
+```
+
+```{r}
+glimpse(WorldCities)
+WorldCities <- head(WorldCities, 200) # 200 rows
+country_col <- WorldCities$country
+unique(country_col)
+```
+
+```{r}
+country_col <- select(WorldCities, country)
+country_col <- WorldCities %>% select(country)
+
+WorldCities %>% select(region) %>% head(5)
+```
+
+```{r}
+WorldCities %>% ggplot(aes(x = population)) + 
+  geom_histogram() + 
+  xlab('City Population')
+```
+
+```{r}
+WorldCities %>% ggplot(aes(x = population)) + 
+  geom_histogram() + 
+  xlab('Population of City') + 
+  ylab('Number of Countries') +
+  ggtitle('Title of Graph') + 
+  theme_bw()
+```
+
+My Github repository for my assignments can be found at this URL: [github.com/vravish/compscix-415-2-assignments](github.com/vravish/compscix-415-2-assignments)
