@@ -31,7 +31,7 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 
 4.4
 
-1. 'my_variable' is misspelled the second time, as 'my_varıable'.
+1. `my_variable` is misspelled the second time, as `my_varıable`.
 
 2. Code below
 ```{r}
@@ -82,6 +82,6 @@ filter(flights, is.na(dep_time))
 
 2. The second and all subsequent appearances of the column name are ignored.
 
-3. one_of(c("items here")) allows one to select every item in the vector.
+3. `one_of(c("items here"))` allows one to select every item in the vector.
 
 4. By default, matches for select helpers are case-insensitive. We can use `contains("TIME", ignore.case = FALSE)`.

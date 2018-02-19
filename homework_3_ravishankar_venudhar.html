@@ -141,16 +141,16 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 </ol>
 <p>4.4</p>
 <ol style="list-style-type: decimal">
-<li><p>‘my_variable’ is misspelled the second time, as ‘my_varıable’.</p></li>
+<li><p><code>my_variable</code> is misspelled the second time, as <code>my_varıable</code>.</p></li>
 <li><p>Code below</p></li>
 </ol>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
 <pre><code>## ✔ tibble  1.4.2     ✔ purrr   0.2.4
 ## ✔ tidyr   0.8.0     ✔ dplyr   0.7.4
 ## ✔ readr   1.1.1     ✔ stringr 1.2.0
 ## ✔ tibble  1.4.2     ✔ forcats 0.2.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(ggplot2)
@@ -373,7 +373,7 @@ filter(flights, is.na(dep_time))</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Listing them all sequentially; (contains(‘dep’) | contains(‘arr’)) -contains(‘sched’); dep_time:dep_delay -(sched_dep_time, sched_arr_time)</p></li>
 <li><p>The second and all subsequent appearances of the column name are ignored.</p></li>
-<li><p>one_of(c(“items here”)) allows one to select every item in the vector.</p></li>
+<li><p><code>one_of(c(&quot;items here&quot;))</code> allows one to select every item in the vector.</p></li>
 <li><p>By default, matches for select helpers are case-insensitive. We can use <code>contains(&quot;TIME&quot;, ignore.case = FALSE)</code>.</p></li>
 </ol>
 
