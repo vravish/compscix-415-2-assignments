@@ -1,0 +1,87 @@
+---
+title: "Venudhar Ravishankar Homework 3"
+output:
+  html_document:
+    self_contained: true
+---
+
+3.8.1
+
+1. It's difficult to see how many points are in each area due to overplotting. We can fix this using jitter.
+
+2. The amount, factor, and x parameters control this.
+
+3. They're both point geoms, but jitter displaces each point randomly to illustrate the number of points in a region, but count enlarges each point to show this.
+
+4. Default position is dodge. 
+```{r}
+library(ggplot2)
+
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot()
+```
+
+
+3.9.1
+
+2. It allows the user to change the labels of a plot.
+
+4. It tells me that hwy is consistently higher than cty, but positively correlated. We need a 1:1 ratio so it's easier to observe this. geom_abline added the reference line (y=x) so that we could see that highway MPG is higher.
+
+
+4.4
+
+1. 'my_variable' is misspelled the second time, as 'my_varıable'.
+
+2. Code below
+```{r}
+library(tidyverse)
+library(ggplot2)
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+
+filter(mpg, cyl == 8)
+filter(diamonds, carat > 3)
+```
+
+5.2.4
+
+1. Code below
+```{r}
+library(nycflights13)
+
+filter(flights, arr_delay >= 120)
+filter(flights, dest %in% c('IAH', 'HOU'))
+filter(flights, carrier %in% c('UA', 'AA', 'DL'))
+filter(flights, month %in% c(7, 8, 9))
+filter(flights, arr_delay >= 120 & dep_delay <= 0)
+filter(flights, dep_delay >= 60 & (dep_delay - arr_delay >= 30))
+filter(flights, 0 <= dep_time & dep_time <= 600)
+```
+
+2. Code below
+```{r}
+library(nycflights13)
+
+filter(flights, between(dep_time, 0, 600))
+```
+
+3. Code below. 8255 rows have no dep_time. dep_delay, arr_time, arr_delay, tailnum (in some cases), and air_time are also missing. These rows appear to represent cancelled flights.
+```{r}
+library(nycflights13)
+
+filter(flights, is.na(dep_time))
+```
+
+4. Any (nonzero) number raised to the power of zero evaluates to 1. Any boolean combined with `| TRUE` will return a value of TRUE. Any boolean combined with `& FALSE` will return a value of FALSE. If other information present is sufficient to determine the value of the expression, then R will evaluate the expression, replacing NA with any valid number. In the case of `NA \* 0`, however, since `Inf` is also a valid number and `Inf \* 0` evaluates to undefined (unlike any other number when multiplied by zero), R returns NA.
+
+5.4.1
+
+1. Listing them all sequentially; (contains('dep') | contains('arr')) -contains('sched'); dep_time:dep_delay -(sched_dep_time, sched_arr_time)
+
+2. The second and all subsequent appearances of the column name are ignored.
+
+3. one_of(c("items here")) allows one to select every item in the vector.
+
+4. By default, matches for select helpers are case-insensitive. We can use `contains("TIME", ignore.case = FALSE)`.
