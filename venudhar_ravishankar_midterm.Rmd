@@ -1,0 +1,116 @@
+---
+title: "venudhar_ravishankar_midterm"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 2
+---
+
+## Tidyverse Packages
+
+### 1
+Plotting: ggplot2
+Data wrangling: dplyr
+
+### 2
+geom_point, filter, mutate, 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tibble)
+```
+
+
+## R Basics
+
+### 1
+```{r}
+My_data.name___is.too00ooLong <- c( 1 , 2   , 3 )
+```
+
+### 2
+```{r}
+my_string <- c('has', 'an', 'error', 'in', 'it')
+```
+
+### 3
+They were all converted to strings, since at least one of them was a string.
+
+## Data import/export
+
+### 1
+```{r}
+rt <- read.delim("C:\\Users\\Venudhar\\Documents\\Berkeley X415.2\\compscix-415-2-assignments-master\\rail_trail.txt", sep="|")
+```
+
+### 2
+```{r}
+saveRDS(rt, file = 'rail_trail.rds')
+rail_trail_rds <- readRDS('rail_trail.rds')
+
+```
+
+## Visualization
+
+### 1
+- We don't know how many respondents fit in each category (age, gender, etc.)
+
+- The percentages in each row don't add up to 100; I'm assuming those people don't know the answer
+
+- The circle sizes aren't useful since the numbers are what they represent
+
+### 2
+```{r}
+```
+
+### 3
+We can change the above plot by using jitter, in the style of `position_jitter`.
+
+## Data munging and wrangling
+
+### 1
+Every row should have a fields for country, population_1999, cases_1999, population_2000, and cases_2000. Each country would have a single row. 
+```
+group_by(table2, country) %>% summarise(
+  population_1999 = sum(count[type = 'population', year = 1999]),
+  population_2000 = sum(count[type = 'population', year = 2000]), 
+  cases_1999 = sum(count[type = 'population', year = 1999]),
+  cases_2000 = sum(count[type = 'population', year = 2000]))
+```
+
+### 2
+```{r}
+mutate(diamonds, price_per_carat = price / carat)
+```
+
+### 3
+```
+diamonds %>% group_by(cut) %>% summarise(
+  count_diamonds_lowcarat_highprice = n([price > 10000 & carat < 1.5]),
+  frac_diamonds_lowcarat_highprice = n([price > 10000 & carat < 1.5]) / n()
+)
+```
+
+The results show that as cut quality increases, the price increases relative to weight. We should be concerned about color though.
+
+## EDA
+
+### 1
+It's from 2000 to 2015.
+
+### 2
+46 cities
+
+### 3
+Houston in July 2015 with 8945 sales.
+```{r}
+txhousing %>% group_by(city, month, year) %>% summarize(numsales = sum(sales)) %>% arrange(-numsales)
+```
+
+### 4
+I had guessed that more listings leads to more sales. Here is a query that groups by listings and aggregates the sum of sales.
+```{r}
+txhousing %>% group_by(listings) %>% summarize(numsales = sum(sales)) %>% arrange(listings)
+```
